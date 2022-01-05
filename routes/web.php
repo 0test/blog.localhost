@@ -28,7 +28,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{post}/edit', 'EditController')->name('admin.post.edit');
         Route::patch('/{post}', 'UpdateController')->name('admin.post.update');
         Route::delete('/{post}', 'DeleteController')->name('admin.post.delete');
-
    });
     //  End posts
 
@@ -41,7 +40,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
          Route::get('/{category}/edit', 'EditController')->name('admin.category.edit');
          Route::patch('/{category}', 'UpdateController')->name('admin.category.update');
          Route::delete('/{category}', 'DeleteController')->name('admin.category.delete');
-
     });
     //  end Categories
 
@@ -56,6 +54,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('/{tag}', 'DeleteController')->name('admin.tag.delete');
    });
    //  end Tags
+
+    //  Users
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function(){
+        Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/create', 'CreateController')->name('admin.user.create');
+        Route::post('/', 'StoreController')->name('admin.user.store');
+        Route::get('/{user}', 'ShowController')->name('admin.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('admin.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
+        Route::delete('/{user}', 'DeleteController')->name('admin.user.delete');
+   });
+   //  end Users
 });
 
 Auth::routes();

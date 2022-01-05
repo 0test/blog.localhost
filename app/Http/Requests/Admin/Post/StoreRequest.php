@@ -15,8 +15,8 @@ class StoreRequest extends FormRequest
             'main_image' => 'required|image',
             'preview_image' => 'required|image',
             'category_id' => 'required|integer|exists:categories,id',
-            'tags' => 'nullable|array',
-            'tags.*'  => 'nullable|integer|exists:tags,id',
+            'tags' => 'required|array',
+            'tags.*'  => 'required|integer|exists:tags,id',
         ];
     }
     public function messages()
@@ -26,10 +26,14 @@ class StoreRequest extends FormRequest
             'title.string' => 'Только строчные символы',
             'content.required' => 'Нужен контент',
             'main_image.required' => 'Выберите изображение',
-            'preview_image.required' => 'Выберите изображение',
+            'preview_image.required' => 'Выберите изображение', 
+            'main_image.image' => 'Выберите изображение',
+            'preview_image.image' => 'Выберите изображение', 
             'category_id.required' => 'Поле не может быть пустым',
             'category_id.exists' => 'Категории не существует',
-            'tags.exists' => 'Тега не существует',
+            'category_id.integer' => 'Категория неверная',
+            'tags.*.exists' => 'Тега не существует',
+            'tags.required' => 'Нужен хотя бы один тег',
         ];
     }
 }

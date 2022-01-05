@@ -3574,3 +3574,7 @@ ul.actions form {
     flex-shrink: 0;
     max-width: 100%;
 }
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    height: unset;
+}

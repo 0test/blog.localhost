@@ -17,9 +17,9 @@ class UpdateRequest extends FormRequest
             'content' => 'required',
             'main_image' => 'nullable|image',
             'preview_image' => 'nullable|image',
-            'category_id' => 'required|exist:categories,id',
-            'tags' => '',
-
+            'category_id' => 'required|integer|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*'  => 'nullable|integer|exists:tags,id',
         ];
     }
     public function messages()
@@ -30,6 +30,9 @@ class UpdateRequest extends FormRequest
             'content.required' => 'Нужен контент',
             'main_image.required' => 'Выберите изображение',
             'preview_image.required' => 'Выберите изображение',
+            'category_id.required' => 'Поле не может быть пустым',
+            'category_id.exists' => 'Категории не существует',
+            'tags.exists' => 'Тега не существует',
         ];
     }
 }

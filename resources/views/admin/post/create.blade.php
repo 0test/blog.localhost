@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-12 col-12-xsmall">
                     <label for="category_id">Категория</label>
-                    <select name="category_id" id="category_id">
+                    <select name="category_id" id="category_id" class="js-tags-single">
                         @foreach ($categories as $category)
                             <option
                             {{ $category->id  == old('category_id') ? 'selected' : ''}}
@@ -54,13 +54,12 @@
                     @enderror
                 </div>
                 <div class="col-12 col-12-xsmall">
-                    <label for="tag">Теги</label>
-                    
-                    <select name="tags[]" multiple="multiple" id="tag" class="js-tags-multiple">
+                    <label for="tags">Теги</label>
+                    <select name="tags[]" multiple="multiple" id="tags" class="js-tags-multiple">
                         @foreach ($tags as $tag)
                             <option
-                            {{  !empty(old('tags')) && in_array($tag->id, old('tags')) ? 'selected' :''  }}
-                             value="{{$tag->id}}">{{$tag->title}}</option>
+                            {{  is_array( old('tags') ) && in_array( $tag->id, old('tags') ) ? 'selected' :''  }}
+                             value="{{ $tag->id }}">{{ $tag->title }}</option>
                         @endforeach
                     </select>
                     @error('tags')

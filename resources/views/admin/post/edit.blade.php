@@ -8,7 +8,7 @@
                 <h3>Редактируем пост</h3>
             </div>
             <div class="col-3 col-12-xsmall">
-                <a href="{{ route('admin.post.show', $post->id) }}" target="_blank" class="button fit">Просмотр</a>
+                <a href="{{ route('admin.post.show', $post->id) }}" class="button fit">Просмотр</a>
             </div>
         </header>
         <form enctype="multipart/form-data" method="post" action="{{ route('admin.post.update', $post->id) }} ">
@@ -60,11 +60,17 @@
                 </div>
                 <div class="col-12 col-12-xsmall">
                     <label for="tag">Теги</label>
+                    
                     <select name="tags[]" multiple="multiple" id="tag" class="js-tags-multiple">
+                        
                         @foreach ($tags as $tag)
                             <option
-                            
-                             value="{{$tag->id}}">{{$tag->title}}</option>
+                                @foreach ($post->tags as $postTag)
+                                    @if($postTag->id == $tag->id)
+                                    selected
+                                    @endif
+                                @endforeach
+                            value="{{$tag->id}}">{{$tag->title}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -10,7 +10,7 @@
             @csrf
             <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
-                    <input tabindex="1" class="main_title" type="text" name="title" value="" placeholder="Название">
+                    <input tabindex="1" class="main_title" type="text" name="title" value="{{ old('title')}}" placeholder="Название">
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -30,13 +30,12 @@
                             placeholder="">
                         <img class="photofile_image" src="{{ asset('images/pic11.jpg') }}" alt="">
                     </label>
-
                     @error('main_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-12 col-12-xsmall">
-                    <textarea id="content" name="content"  rows="6"></textarea>
+                    <textarea id="content" name="content"  rows="6">{{ old('content')}}</textarea>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -72,4 +71,19 @@
 @push('custom-scripts')
     <script src = "{{ asset('assets/admin/tinymce/tinymce.min.js') }}"></script>
     <script src = "{{ asset('assets/admin/tinymce-settings.js') }}"></script>   
+    <script>
+        $(document).ready(function(){
+            $('.js-selectphoto').on('change', function(e){
+                if(event.target.files[0]){
+                    $(this).parent('label').find('img').remove();
+                    $(this).parent('label').addClass('js-selectphoto-notempty');
+                    $(this).parent('label').append(
+                    $('<img/>')
+                        .attr('src', URL.createObjectURL(event.target.files[0]))
+                        .attr('class', 'photofile_image')
+                    );
+                };
+            });
+        });
+    </script>
 @endpush

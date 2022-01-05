@@ -24,10 +24,6 @@
     <script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
     <script src="{{ asset('assets/js/util.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.min.js') }}"></script>
-
     @stack('custom-scripts')
-    
-
 </body>
-
 </html>

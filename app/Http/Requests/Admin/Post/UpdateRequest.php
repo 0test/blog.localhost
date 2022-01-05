@@ -14,7 +14,9 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'content' => 'required'
+            'content' => 'required',
+            'main_image' => 'nullable|image',
+            'preview_image' => 'nullable|image',
 
         ];
     }
@@ -24,6 +26,8 @@ class UpdateRequest extends FormRequest
             'title.required' => 'Поле не может быть пустым',
             'title.string' => 'Только строчные символы',
             'content.required' => 'Нужен контент',
+            'main_image.required' => 'Выберите изображение',
+            'preview_image.required' => 'Выберите изображение',
         ];
     }
 }

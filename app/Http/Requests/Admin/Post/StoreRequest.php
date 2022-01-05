@@ -12,8 +12,8 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string',
             'content' => 'required',
-            'main_image' => '',
-            'preview_image' => '',
+            'main_image' => 'required|image',
+            'preview_image' => 'required|image',
         ];
     }
     public function messages()
@@ -22,6 +22,8 @@ class StoreRequest extends FormRequest
             'title.required' => 'Поле не может быть пустым',
             'title.string' => 'Только строчные символы',
             'content.required' => 'Нужен контент',
+            'main_image.required' => 'Выберите изображение',
+            'preview_image.required' => 'Выберите изображение',
         ];
     }
 }

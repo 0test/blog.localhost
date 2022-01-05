@@ -41,21 +41,31 @@
                     @enderror
                 </div>
                 <div class="col-12 col-12-xsmall">
-                    <select name="category" id="category">
-                        <option value="1">Manufacturing</option>
-                        <option value="1">Shipping</option>
-                        <option value="1">Administration</option>
-                        <option value="1">Human Resources</option>
+                    <label for="category_id">Категория</label>
+                    <select name="category_id" id="category_id">
+                        @foreach ($categories as $category)
+                            <option
+                            {{ $category->id  == old('category_id') ? 'selected' : ''}}
+                             value="{{ $category->id}}">{{$category->title}}</option>
+                        @endforeach
                     </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12 col-12-xsmall">
-                    <select name="tag" id="tag">
-                        <option value="">- Tag -</option>
-                        <option value="1">Manufacturing</option>
-                        <option value="1">Shipping</option>
-                        <option value="1">Administration</option>
-                        <option value="1">Human Resources</option>
+                    <label for="tag">Теги</label>
+                    
+                    <select name="tags[]" multiple="multiple" id="tag" class="js-tags-multiple">
+                        @foreach ($tags as $tag)
+                            <option
+                            {{  !empty(old('tags')) && in_array($tag->id, old('tags')) ? 'selected' :''  }}
+                             value="{{$tag->id}}">{{$tag->title}}</option>
+                        @endforeach
                     </select>
+                    @error('tags')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12">
                     <ul class="actions">
@@ -70,9 +80,12 @@
 
 @push('custom-scripts')
     <script src = "{{ asset('assets/admin/tinymce/tinymce.min.js') }}"></script>
-    <script src = "{{ asset('assets/admin/tinymce-settings.js') }}"></script>   
+    <script src = "{{ asset('assets/admin/tinymce-settings.js') }}"></script>
+    <link href="{{ asset('assets/admin/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <script src = "{{ asset('assets/admin/select2/js/select2.min.js') }}"></script>
     <script>
         $(document).ready(function(){
+            $('.js-tags-multiple').select2();
             $('.js-selectphoto').on('change', function(e){
                 if(event.target.files[0]){
                     $(this).parent('label').find('img').remove();

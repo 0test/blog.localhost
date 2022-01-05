@@ -14,6 +14,8 @@ class StoreRequest extends FormRequest
             'content' => 'required',
             'main_image' => 'required|image',
             'preview_image' => 'required|image',
+            'category_id' => 'required|exists:categories,id',
+            'tags.*'  => 'required|exists:tags,id',
         ];
     }
     public function messages()
@@ -24,6 +26,9 @@ class StoreRequest extends FormRequest
             'content.required' => 'Нужен контент',
             'main_image.required' => 'Выберите изображение',
             'preview_image.required' => 'Выберите изображение',
+            'category_id.required' => 'Поле не может быть пустым',
+            'category_id.exists' => 'Категории не существует',
+            'tags.required' => 'tags',
         ];
     }
 }

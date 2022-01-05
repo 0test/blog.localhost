@@ -17,7 +17,9 @@ class PostService{
             $data['preview_image'] = Storage::put('/images', $data['preview_image']);
             $data['main_image'] = Storage::put('/images', $data['main_image']);
             $post = Post::create($data);
-            $post->tags()->attach($tagIds);
+            if( isset($tagIds)){
+                $post->tags()->attach($tagIds);
+            }
 			DB::commit();
         } catch (\Throwable $exeption) {
 			DB::rollBack();
@@ -40,7 +42,9 @@ class PostService{
                 $data['main_image'] = Storage::put('/blog_images', $data['main_image']);
             }
             $post->update($data);
-            $post->tags()->sync($tagIds);
+            if( isset($tagIds)){
+                $post->tags()->sync($tagIds);
+            }
 			DB::commit();
         } catch (\Throwable $th) {
             abort(500);

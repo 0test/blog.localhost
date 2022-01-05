@@ -57,12 +57,13 @@
                             </option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12 col-12-xsmall">
                     <label for="tag">Теги</label>
-                    
                     <select name="tags[]" multiple="multiple" id="tag" class="js-tags-multiple">
-                        
                         @foreach ($tags as $tag)
                             <option
                                 @foreach ($post->tags as $postTag)
@@ -73,6 +74,9 @@
                             value="{{$tag->id}}">{{$tag->title}}</option>
                         @endforeach
                     </select>
+                    @error('tags')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12">
                     <ul class="actions">

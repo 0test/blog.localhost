@@ -24,8 +24,7 @@ class UpdateController extends Controller
                 $data['main_image'] = Storage::put('/blog_images', $data['main_image']);
             }
             $post->update($data);
-            $post->tags()->detach();
-            $post->tags()->attach($tagIds);
+            $post->tags()->sync($tagIds);
             return redirect()->route('admin.post.edit', $post->id);
         } catch (\Throwable $th) {
             abort(404);

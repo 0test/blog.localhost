@@ -3,14 +3,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController')->name('index');
-   
 });
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
+    Route::get('/', 'IndexController')->name('post.index');
+    Route::get('/{post}', 'ShowController')->name('post.show');
+});
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
+    Route::get('/', 'IndexController')->name('category.index');
+    Route::get('/{category}', 'ShowController')->name('category.show');
+});
+Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function(){
+    Route::get('/', 'IndexController')->name('tags.index');
 
+    Route::get('/{tag}', 'ShowController')->name('tag.show');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function () {
     //  Admin home
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', 'IndexController')->name('admin.index');
+        Route::get('/', 'IndexController')->name('admin.main.index');
     });
     //  End Admin home
 

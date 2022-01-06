@@ -12,7 +12,7 @@
 		@else
 			<li><a title="Профиль" href="{{ route('login') }}" class=""><i class="far fa-user"></i></a></li>
 
-			<li><a title="Админка" href="{{ route('admin.index') }}" class=""><i class="fas fa-user-shield"></i></a></li>
+			<li><a title="Админка" href="{{ route('admin.main.index') }}" class=""><i class="fas fa-user-shield"></i></a></li>
 			<li>
 				<form action="{{ route('logout') }}" method="POST">
 					@csrf

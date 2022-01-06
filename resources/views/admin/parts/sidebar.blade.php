@@ -5,7 +5,7 @@
 				<h2>Действия</h2>
 			</header>
 			<ul>
-				<li class="@if (Request::url() == route('admin.index') ) active @endif"><a  href="{{ route('admin.index') }}">Дашборд</a></li>
+				<li class="@if (Request::url() == route('admin.main.index') ) active @endif"><a  href="{{ route('admin.main.index') }}">Дашборд</a></li>
 				<li>
 					<span class="opener @if(Request::is('admin/posts*')) active @endif">Посты</span>
 					<ul>

@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Post;
+namespace App\Http\Controllers\Post;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 
-class ShowController extends BaseController
+class ShowController extends Controller
 {
     public function __invoke(Post $post)
     {
         $category = Category::findOrFail($post->category_id);
-        return view('admin.post.show', compact('post','category'));
+        return view('post.show', compact('post','category'));
     }
     
 }

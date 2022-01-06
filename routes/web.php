@@ -1,9 +1,4 @@
 <?php
-/*
-use App\Http\Controllers\Main\IndexController;
-use App\Http\Controllers\Admin\Main\IndexController;
-*/
-
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
@@ -12,7 +7,7 @@ Route::group(['namespace' => 'Main'], function () {
 });
 
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function () {
     //  Admin home
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin.index');
@@ -68,4 +63,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
    //  end Users
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);

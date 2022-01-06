@@ -1,28 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
+    <section>
+        <div class="col-6">
+            @if (session('resent'))
+                <div class="alert alert-success" role="alert">
+                    Отправлено
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            @endif
+
+            <p>Проверьте вашу почту, там должно быть письмо с подтверждением регистрации</p>
+            <p> Если вы не получили письмо, вы можете снова</p>
+            <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                @csrf
+                <button type="submit" class="button">Отправить запрос</button>.
+            </form>
+    </section>
 @endsection

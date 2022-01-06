@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin\User;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Mail\User\PasswordMail;
@@ -16,10 +15,10 @@ class StoreController extends Controller
         $data = $request->validated(); 
         $password = $data['password'];
         $data['password'] = Hash::make($data['password']);
+        $data['email_verified_at'] =  date("Y-m-d H:i:s");  //  TODO: а надо ли?
         User::firstOrCreate(['email' => $data['email']], $data);
         Mail::to($data['email'])->send(new PasswordMail($password, $data['email'] ));
         //TODO: неплохо бы сделать отправку опциональной
         return redirect()->route('admin.user.index');
     }
-    
 }

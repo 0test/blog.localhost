@@ -86,6 +86,7 @@
                                     <td class="center"><span
                                             class="small">{{ date('H:i d.m.Y', strtotime($user->created_at)) }}</span>
                                     </td>
+                                   
                                     <td class="center">{{ $roles[$user->role] }}</td>
                                     <td class="center">
                                         <ul class="actions  small">

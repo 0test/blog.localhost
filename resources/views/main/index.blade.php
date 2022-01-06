@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title','Блог о всяком')
+
 @section('content')
     <section id="banner">
         <div class="content">

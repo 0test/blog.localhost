@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Просмотр поста')
+@section('title', $post->title)
 
 @section('content')
     <section>

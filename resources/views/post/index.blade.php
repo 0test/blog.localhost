@@ -20,6 +20,8 @@
                     </ul>
                 </article>
             @endforeach
+            
         </div>
+            {{ $posts->onEachSide(2)->links('parts.pagination-blog') }}
     </section>
 @endsection

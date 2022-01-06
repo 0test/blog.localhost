@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Просмотр тега')
+@section('title', $tag->title)
 
 @section('content')
 <section>

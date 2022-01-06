@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts = Post::paginate($perPage = 8, $columns = ['*'], $pageName = 'page');
         return view('post.index', compact('posts'));
     }
     

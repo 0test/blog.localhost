@@ -17,6 +17,10 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_ADMIN = 99;
     const ROLE_READER = 0;
 
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user_likes','user_id','post_id');
+    }
     public static function getRoles()
     {
         return[

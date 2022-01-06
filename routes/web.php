@@ -4,6 +4,27 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController')->name('index');
 });
+
+//  user profile
+Route::group(['namespace' => 'Profile', 'prefix' => 'profile','middleware' => ['auth']], function () {
+    Route::group(['namespace' => 'Main', 'prefix' => '' ], function () {
+        Route::get('/', 'IndexController')->name('profile.main.index');
+    });
+    Route::group(['namespace' => 'Likes', 'prefix'=>'likes'], function () {
+        Route::get('/', 'IndexController')->name('profile.likes.index');
+        Route::post('/{post}', 'DeleteController')->name('profile.likes.delete');
+
+    });
+
+    Route::group(['namespace' => 'Comments', 'prefix' => 'comments'], function () {
+        Route::get('/', 'IndexController')->name('profile.comments.index');
+    });
+
+
+});
+//  end user profile
+
+//  site content
 Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
     Route::get('/', 'IndexController')->name('post.index');
     Route::get('/{post}', 'ShowController')->name('post.show');
@@ -17,7 +38,9 @@ Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function(){
 
     Route::get('/{tag}', 'ShowController')->name('tag.show');
 });
+//  end site content 
 
+//  Odmen actions
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function () {
     //  Admin home
     Route::group(['namespace' => 'Main'], function () {
@@ -73,5 +96,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
    });
    //  end Users
 });
-
+//  end Odmen actions
 Auth::routes(['verify' => true]);

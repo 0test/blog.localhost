@@ -10,7 +10,7 @@
 		@guest
 			<li><a title="Вход" href="{{ route('login') }}" class=""><i class="fas fa-sign-in-alt"></i></a></li>
 		@else
-			<li><a title="Профиль" href="{{ route('login') }}" class=""><i class="far fa-user"></i></a></li>
+			<li><a title="Профиль" href="{{ route('profile.main.index') }}" class=""><i class="far fa-user"></i></a></li>
 
 			<li><a title="Админка" href="{{ route('admin.main.index') }}" class=""><i class="fas fa-user-shield"></i></a></li>
 			<li>

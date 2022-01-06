@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Просмотр категории')
+@section('title', $category->title)
 
 @section('content')
 <section>

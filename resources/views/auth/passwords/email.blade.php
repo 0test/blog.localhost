@@ -1,47 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <section>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+        <div class="row">
+            <div class="col-6 col-12-xsmall">
+                @if (session('status'))
+                    <div class="col-12">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
+                    <div class="row gtr-uniform">
+                        <div class="col-12 col-12-xsmall">
+                            <input id="email" type="email" class="input" name="email" value="{{ old('email') }}" required autofocus>
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                         </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="col-12 col-12-xsmall">
+                            <ul class="actions">
+                                <li><button type="submit" class="button primary">Отправить</button></li>
+                            </ul>
                         </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</div>
+
+    </section>
 @endsection

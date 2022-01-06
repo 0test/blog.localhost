@@ -2193,6 +2193,13 @@ ul.actions.fit.stacked {
 
 /* Icons */
 
+#header ul.icons {
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-wrap: nowrap;
+    display: flex;
+}
+
 ul.icons {
     cursor: default;
     list-style: none;
@@ -3577,4 +3584,31 @@ ul.actions form {
 
 .select2-container--default .select2-search--inline .select2-search__field {
     height: unset;
+}
+
+.usersection {
+    margin-left: 20px;
+}
+
+.usersection form {
+    margin: 0;
+    padding: 0;
+}
+
+.usersection a,
+.usersection button {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid;
+    align-items: center;
+    justify-content: center;
+    background: inherit;
+    border: 1px solid #f45c5c;
+    color: #f45c5c;
+}
+
+.usersection a i {
+    display: flex;
 }

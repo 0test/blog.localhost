@@ -12,8 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-    const ROLE_ADMIN = 0;
-    const ROLE_READER = 1;
+    const ROLE_ADMIN = 99;
+    const ROLE_READER = 0;
 
     public static function getRoles()
     {

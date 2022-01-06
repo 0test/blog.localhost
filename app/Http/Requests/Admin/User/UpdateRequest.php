@@ -14,8 +14,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,' . $this->user_id,
             'password' => 'nullable|string',
+            'user_id' => 'required|integer|exists:users,id',
+            'role' => 'required|integer',
         ];
     }
     public function messages()
@@ -26,6 +28,7 @@ class UpdateRequest extends FormRequest
             'email.required' => 'Почта нужна обязательно',
             'email.email' => 'Почта неверная',
             'email.string' => 'Почта неверная',
+            'email.unique' => 'Такая почта есть',
         ];
     }
 }

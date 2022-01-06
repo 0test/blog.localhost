@@ -12,8 +12,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|email',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required|string',
+            'role' => 'required|integer',
         ];
     }
     public function messages()
@@ -25,7 +26,7 @@ class StoreRequest extends FormRequest
             'email.email' => 'Почта неверная',
             'email.string' => 'Почта неверная',
             'password.required'=> 'Пароль сильно нужен',
-
+            'email.unique' => 'Такая почта есть',
         ];
     }
 }

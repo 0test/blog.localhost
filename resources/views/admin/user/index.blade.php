@@ -14,6 +14,7 @@
                         <th>id</th>
                         <th>Имя</th>
                         <th class="center">Создан</th>
+                        <th class="center">Роль</th>
                         <th class="center">Действия</th>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name}}</td>
                         <td class="center"><span class="small">{{ date('H:i d.m.Y', strtotime($user->created_at)) }}</span></td>
+                        <td class="center">{{ $roles[$user->role]}}</td>
                         <td class="center">
                             <ul class="actions  small">
                                 <li><a href="{{ route('admin.user.show', $user->id)}}" class="button ">Открыть</a></li>

@@ -12,7 +12,6 @@
             </div>
         </header>
         <h3 id="content">Посты</h3>
-        <h3 id="content">Посты</h3>
         <div class="table-wrapper">
             @if ($tag->posts()->count() > 0)
             <table>

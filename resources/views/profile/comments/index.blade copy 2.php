@@ -25,7 +25,7 @@
                                             <h4>Действия</h4>
                                             <ul class="actions  small">
                                                 <li>
-                                                    <a href="{{ route('profile.comment.edit', $comment->id) }}" class="button">Редактировать</a>
+                                                    <a href="#" class="button">Редактировать</a>
                                                 </li>
                                                 <li>
                                                     <form action="{{ route('profile.comment.delete', $comment->id) }}"

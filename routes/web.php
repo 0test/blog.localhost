@@ -11,13 +11,20 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile','middleware' => ['
         Route::get('/', 'IndexController')->name('profile.main.index');
     });
     Route::group(['namespace' => 'Likes', 'prefix'=>'likes'], function () {
+        //Route::get('/create', 'CreateController')->name('profile.likes.create');
         Route::get('/', 'IndexController')->name('profile.likes.index');
         Route::post('/{post}', 'DeleteController')->name('profile.likes.delete');
 
     });
 
     Route::group(['namespace' => 'Comments', 'prefix' => 'comments'], function () {
+        //Route::get('/create', 'CreateController')->name('admin.post.create');
+        //Route::post('/', 'StoreController')->name('profile.comment.store');
         Route::get('/', 'IndexController')->name('profile.comments.index');
+        Route::get('/{comment}/edit', 'EditController')->name('profile.comment.edit');
+        Route::patch('/{comment}', 'UpdateController')->name('profile.comment.update');
+        Route::post('/{comment}', 'DeleteController')->name('profile.comment.delete');
+
     });
 
 
@@ -26,8 +33,10 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile','middleware' => ['
 
 //  site content
 Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
+    
     Route::get('/', 'IndexController')->name('post.index');
-    Route::get('/{post}', 'ShowController')->name('post.show');
+    Route::get('/{post}', 'ShowController')->name('post.show')->where('post','[0-9]+');
+    Route::get('/random', 'RandomPostController')->name('post.random');
 });
 Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
     Route::get('/', 'IndexController')->name('category.index');
@@ -38,6 +47,7 @@ Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function(){
 
     Route::get('/{tag}', 'ShowController')->name('tag.show');
 });
+
 //  end site content 
 
 //  Odmen actions

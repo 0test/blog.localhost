@@ -10,11 +10,11 @@
             </header>
             <p>Автор блога не равно автор постов, вы же понимаете?</p>
             <ul class="actions">
-                <li><a href="#" class="button big">Случайный пост</a></li>
+                <li><a href="{{ route('post.random')}}" class="button big">Случайный пост</a></li>
             </ul>
         </div>
         <span class="image object">
-            <img src="images/pic10.jpg" alt="" />
+            <img src="{{ asset('images/pic10.jpg') }}" alt="Bloge" />
         </span>
     </section>
     <section>

@@ -7,7 +7,8 @@ class IndexController extends Controller
     {
         $user = auth()->user();
         $likedPosts = auth()->user()->likedPosts;
-        return view('profile.main.index', compact('user','likedPosts'));
+        $comments = auth()->user()->comments;
+        return view('profile.main.index', compact('user','likedPosts','comments'));
     }
     
 }

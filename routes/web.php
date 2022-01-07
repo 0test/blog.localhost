@@ -37,6 +37,9 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
     Route::get('/', 'IndexController')->name('post.index');
     Route::get('/{post}', 'ShowController')->name('post.show')->where('post','[0-9]+');
     Route::get('/random', 'RandomPostController')->name('post.random');
+    Route::group(['namespace' =>'Comment', 'prefix' => 'comment'],function(){
+        Route::post('/{post}', 'StoreController')->name('comment.store');
+    });
 });
 Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
     Route::get('/', 'IndexController')->name('category.index');

@@ -3612,3 +3612,42 @@ ul.actions form {
 .usersection a i {
     display: flex;
 }
+
+.comments_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments_wrapper hr {
+    margin: 1em 0;
+}
+
+.comment {
+    margin-bottom: 2em;
+}
+
+.comment_user {
+    display: flex;
+}
+
+.comment_user h4 i {
+    margin-right: 5px;
+    font-size: 14px
+}
+
+.comment_user h4 {
+    font-size: 14px;
+}
+
+.comment_message blockquote {
+    margin-bottom: 0;
+}
+
+.comment_date {
+    margin-top: 8px;
+    font-size: 12px
+}
+
+.comment_self {
+    background: #c9e3ca;
+}

@@ -11,7 +11,9 @@ class ShowController extends Controller
     public function __invoke(Post $post)
     {
         $category = Category::findOrFail($post->category_id);
-        return view('post.show', compact('post','category'));
+        $comments = $post->comments;
+        $relatedPosts = Post::get()->random(4)->where('id','!=', $post->id);
+        return view('post.show', compact('post','category','comments','relatedPosts'));
     }
     
 }

@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title','Сброс пароля')
 
 @section('content')
     <section>

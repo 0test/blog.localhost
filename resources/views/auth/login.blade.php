@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Вход')
 @section('content')
 
     <section>
@@ -29,12 +29,10 @@
                         <div class="col-12">
                             <ul class="actions">
                                 <li><input type="submit" value="Войти" class="primary"></li>
-                                <li><a href="{{ route('register')}}" class="button">Регистрация</a></li>
-                                @if (Route::has('password.request'))
-                                    <li>
-                                        <a class="button" href="{{ route('password.request') }}">Вспомнть пароль</a>
-                                    </li>
-                                @endif
+                                <li><a href="{{ route('register') }}" class="button">Регистрация</a></li>
+                                <li>
+                                    <a class="button" href="{{ route('password.request') }}">Вспомнить пароль</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

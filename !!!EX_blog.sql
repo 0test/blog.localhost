@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 08 2022 г., 20:24
--- Версия сервера: 10.3.22-MariaDB
--- Версия PHP: 7.4.5
+-- Время создания: Янв 10 2022 г., 14:39
+-- Версия сервера: 8.0.24
+-- Версия PHP: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -53,10 +53,10 @@ INSERT INTO `categories` (`id`, `title`, `created_at`, `updated_at`, `deleted_at
 --
 
 CREATE TABLE `comments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -66,15 +66,12 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `message`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(9, 'awdaw d aw 2\r\ncomment 221', 15, 3, NULL, '2022-01-07 17:04:57'),
-(10, 'awdaw d aw', 15, 4, NULL, NULL),
-(11, '123', 15, 3, '2022-01-07 18:50:02', '2022-01-07 18:50:02'),
-(12, '213123', 15, 3, '2022-01-07 18:50:28', '2022-01-07 18:50:28'),
-(13, 'dawdawd w \r\nwad w daw\r\nawd aw', 14, 3, '2022-01-07 18:51:04', '2022-01-07 18:51:04'),
-(14, '313 1231', 16, 3, '2022-01-07 18:59:38', '2022-01-07 18:59:38'),
-(15, 'adaw', 16, 3, '2022-01-07 19:01:55', '2022-01-07 19:01:55'),
+(9, 'awdaw d aw 2\r\ncomment 2211123 1', 15, 3, NULL, '2022-01-10 06:44:30'),
+(10, 'awdaw d awawdawd', 15, 4, NULL, '2022-01-10 06:48:36'),
+(13, 'dawdawd w \r\nwad w daw\r\nawd aw фцв фцвф', 14, 3, '2022-01-07 18:51:04', '2022-01-10 07:34:36'),
 (16, 'awda d aw', 16, 3, '2022-01-07 19:04:24', '2022-01-07 19:04:24'),
-(17, 'jkljkljkljkj jkljkjljguhyg\r\nkjkjlkj', 9, 3, '2022-01-07 19:13:12', '2022-01-07 19:13:12');
+(17, 'jkljkljkljkj jkljkjljguhyg\r\nkjkjlkj', 9, 3, '2022-01-07 19:13:12', '2022-01-07 19:13:12'),
+(18, 'фцв фцв', 16, 3, '2022-01-10 07:32:09', '2022-01-10 07:32:09');
 
 -- --------------------------------------------------------
 
@@ -83,13 +80,13 @@ INSERT INTO `comments` (`id`, `message`, `post_id`, `user_id`, `created_at`, `up
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -99,13 +96,13 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -115,9 +112,9 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -150,8 +147,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -162,12 +159,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -180,15 +177,15 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `posts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `preview_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `main_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `preview_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -222,11 +219,11 @@ INSERT INTO `posts` (`id`, `title`, `content`, `category_id`, `created_at`, `upd
 --
 
 CREATE TABLE `post_tags` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `post_id` bigint(20) UNSIGNED NOT NULL,
-  `tag_id` bigint(20) UNSIGNED NOT NULL
+  `post_id` bigint UNSIGNED NOT NULL,
+  `tag_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -256,9 +253,9 @@ INSERT INTO `post_tags` (`id`, `created_at`, `updated_at`, `post_id`, `tag_id`) 
 --
 
 CREATE TABLE `post_user_likes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `post_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `post_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -268,8 +265,9 @@ CREATE TABLE `post_user_likes` (
 --
 
 INSERT INTO `post_user_likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(5, 15, 3, NULL, NULL),
-(6, 13, 3, NULL, NULL);
+(14, 8, 3, NULL, NULL),
+(15, 16, 3, NULL, NULL),
+(17, 15, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,8 +276,8 @@ INSERT INTO `post_user_likes` (`id`, `post_id`, `user_id`, `created_at`, `update
 --
 
 CREATE TABLE `tags` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -305,13 +303,13 @@ INSERT INTO `tags` (`id`, `title`, `created_at`, `updated_at`, `deleted_at`) VAL
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` smallint(5) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` smallint UNSIGNED DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -328,13 +326,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `passwo
 (6, 'awdawdwad', 'wdawd@awd', 0, NULL, '$2y$10$HL75/8KVCX3wLO5e9PJTXOc5RpfOELKO23l23jNm2b8A18y1S8eOa', NULL, '2022-01-06 13:28:54', '2022-01-06 13:28:54', NULL),
 (7, 'adwadawdawdaw', 'adawd@adawdawda', 0, NULL, '$2y$10$V6cxIOr5Up3DVSEFfAUCzu3GrAIESPLMMKdj1Jnzew8atletl4XDS', NULL, '2022-01-06 13:42:37', '2022-01-06 13:42:37', NULL),
 (8, 'awdkawjdkljal', 'adkawjdkljalkj@aklwdjlkawjd', 0, NULL, '$2y$10$yGZxdswwiFAuBp8Y7Sz9ouAYpFBXdyXLgO4DMX7M3vc9CQHjzR0m2', NULL, '2022-01-06 13:47:42', '2022-01-06 13:47:42', NULL),
-(9, 'a', 'aawd@a', 0, NULL, '$2y$10$8QY.ZxFARyAD1c4BdvDrdehYbh/1WiwyLFw71feiSMNj87lLPrPSO', NULL, '2022-01-06 14:40:58', '2022-01-06 14:40:58', NULL),
+(9, 'a', 'aawd@a', 0, NULL, '$2y$10$8QY.ZxFARyAD1c4BdvDrdehYbh/1WiwyLFw71feiSMNj87lLPrPSO', NULL, '2022-01-06 14:40:58', '2022-01-10 06:34:32', '2022-01-10 06:34:32'),
 (10, '123', 'a@aawdawd', 0, '2022-01-06 14:45:55', '$2y$10$EVYOXp/TLtauWRHKtiQbXOL5kHBIz7LhW7Uqz1f/wTLb8qt6.rfPS', NULL, '2022-01-06 14:45:30', '2022-01-06 14:45:55', NULL),
 (11, 'awdwadwada', 'awda@awdaw.wa', 0, '2022-01-06 14:49:35', '$2y$10$naVnwOe5O/hmU/lrOQLlS.wdeP3PR2bj6knVEfx8K2pQ3oTpDgE6a', NULL, '2022-01-06 14:49:18', '2022-01-06 14:49:35', NULL),
 (12, 'awdwad', 'lklkl21@lk', 0, NULL, '$2y$10$0O9CZGVoZqNCa01b9V3dh.a0N1PGUJW9Q77MaSHVakIYTPtVCvily', NULL, '2022-01-06 14:59:54', '2022-01-06 14:59:54', NULL),
 (13, '12312312', '231@13123', 0, NULL, '$2y$10$AWDmHGFlqNWOWkjBXGRO6O1hobwIV.u09Eo6HmdMbqFjgvPWW/ObS', NULL, '2022-01-06 15:01:34', '2022-01-06 15:01:34', NULL),
 (14, 'awdawd', 'da22ade@2131', 0, NULL, '$2y$10$M5aY5SFS4NBqn8UEcPU5leCczaIoQMX7CLfIymiNJtKhqwB2YwxqG', NULL, '2022-01-06 15:03:56', '2022-01-06 15:03:56', NULL),
-(15, 'awd;a', 'awdawd@dasadas', 0, '2022-01-06 15:04:30', '$2y$10$V5I154mjrqCn0LYNg6e6pugSHiZzy0hnE14/DFA6tocXZpGfeL5Yq', NULL, '2022-01-06 15:04:30', '2022-01-06 15:04:30', NULL),
+(15, 'awd;a', 'awdawd@dasadas', 0, '2022-01-06 15:04:30', '$2y$10$V5I154mjrqCn0LYNg6e6pugSHiZzy0hnE14/DFA6tocXZpGfeL5Yq', NULL, '2022-01-06 15:04:30', '2022-01-10 06:34:27', '2022-01-10 06:34:27'),
 (16, 'uuuuuuuuuuuuuuuuuu21', '1111111111@222222222222', 0, '2022-01-06 15:05:52', '$2y$10$3mCA5nleG3je/5tD4M4GvO2p08Wv8X9SuQrN/Kwx/eYvGUIvv/tK.', NULL, '2022-01-06 15:05:52', '2022-01-06 15:05:52', NULL),
 (17, 'awd', 'aawdawd@awdaw', 0, NULL, '$2y$10$2/oDX80gj7h2mOcgJoNn2eBQcbuRVnu8CoHZ60wNgDXb/NgN9ZY4K', NULL, '2022-01-06 15:27:14', '2022-01-06 15:27:14', NULL),
 (18, 'awdawda', 'kljlkj2@kjlj', 0, '2022-01-06 15:32:59', '$2y$10$41x4BIvy0bQ2dd7yeRqq/e2zRDVsArQlfRz/GH8Flzz6QhMVoW2Au', NULL, '2022-01-06 15:32:59', '2022-01-06 15:32:59', NULL);
@@ -435,67 +433,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `post_tags`
 --
 ALTER TABLE `post_tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT для таблицы `post_user_likes`
 --
 ALTER TABLE `post_user_likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

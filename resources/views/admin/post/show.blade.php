@@ -19,7 +19,7 @@
             <li>
                 <a href="{{ route('admin.category.show', $category->id) }}" class="">
                     <i class="far fa-folder-open"></i>{{ $category->title }}
-				</a>
+                </a>
             </li>
         </ul>
 
@@ -35,5 +35,23 @@
             </ul>
         @endif
 
+        @if ($comments->count())
+            <div class="comments_wrapper">
+                <hr>
+                <h4>Комментарии</h4>
+                @foreach ($comments as $comment)
+                    <div id="comment{{ $comment->id }}" class="comment  @auth  @if ($comment->user->id == auth()->user()->id) comment_self @endif @endauth">
+                        <div class="comment_user">
+                            <h4><i class="far fa-user"></i> {{ $comment->user->name }} @auth @if ($comment->user->id == auth()->user()->id) (вы) @endif
+                                @endauth</h4>
+                        </div>
+                        <div class="comment_message">
+                            <blockquote>{{ $comment->message }}</blockquote>
+                        </div>
+                        <div class="comment_date">{{ date('H:i d.m.y') }}</div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </section>
 @endsection

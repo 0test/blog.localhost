@@ -13,7 +13,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Название</th>
                         <th class="center">Создана</th>
                         <th class="center">Действия</th>
@@ -21,10 +20,7 @@
                 </thead>
                 <tbody>
                     @foreach ($tags as $tag)
-
-
                         <tr>
-                            <td>{{ $tag->id }}</td>
                             <td>{{ $tag->title }}</td>
                             <td class="center"><span class="small">{{ date('H:i d.m.Y', strtotime($tag->created_at)) }}</span>
                             </td>
@@ -43,13 +39,11 @@
                                     </li>
                                 </ul>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td></td>
                         <td colspan="">Итого {{ $tags->count() }}</td>
                         <td colspan="2"></td>
                     </tr>

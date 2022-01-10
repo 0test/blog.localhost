@@ -11,15 +11,11 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile','middleware' => ['
         Route::get('/', 'IndexController')->name('profile.main.index');
     });
     Route::group(['namespace' => 'Likes', 'prefix'=>'likes'], function () {
-        //Route::get('/create', 'CreateController')->name('profile.likes.create');
         Route::get('/', 'IndexController')->name('profile.likes.index');
         Route::post('/{post}', 'DeleteController')->name('profile.likes.delete');
-
     });
 
     Route::group(['namespace' => 'Comments', 'prefix' => 'comments'], function () {
-        //Route::get('/create', 'CreateController')->name('admin.post.create');
-        //Route::post('/', 'StoreController')->name('profile.comment.store');
         Route::get('/', 'IndexController')->name('profile.comments.index');
         Route::get('/{comment}/edit', 'EditController')->name('profile.comment.edit');
         Route::patch('/{comment}', 'UpdateController')->name('profile.comment.update');
@@ -40,6 +36,12 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
     Route::group(['namespace' =>'Comment', 'prefix' => 'comment'],function(){
         Route::post('/{post}', 'StoreController')->name('comment.store');
     });
+    Route::group(['namespace' =>'Like', 'prefix' => '{post}/like'],function(){
+        Route::post('/', 'StoreController')->name('likes.store');
+        Route::delete('/', 'DeleteController')->name('likes.delete');
+    });
+
+    
 });
 Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
     Route::get('/', 'IndexController')->name('category.index');
@@ -60,6 +62,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/', 'IndexController')->name('admin.main.index');
     });
     //  End Admin home
+
+    //  Comments
+       Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function(){
+        Route::get('/', 'IndexController')->name('admin.comments.index');
+        Route::get('/{comment}/edit', 'EditController')->name('admin.comments.edit');
+        Route::patch('/{comment}', 'UpdateController')->name('admin.comments.update');
+        Route::delete('/{comment}', 'DeleteController')->name('admin.comments.delete');
+   });
+   //  End Comments
+
 
     //  Posts
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){

@@ -10,7 +10,8 @@ class ShowController extends BaseController
     public function __invoke(Post $post)
     {
         $category = Category::findOrFail($post->category_id);
-        return view('admin.post.show', compact('post','category'));
+        $comments = $post->comments;
+        return view('admin.post.show', compact('post','category','comments'));
     }
     
 }

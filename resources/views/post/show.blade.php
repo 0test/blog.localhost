@@ -10,7 +10,7 @@
         {!! $post->content !!}
         <hr>
         <div class="row">
-            <div class="col-6 col-12-xsmall">
+            <div class="col-4 col-12-xsmall">
                 <h4>Категория</h4>
                 <ul class="actions">
                     <li>
@@ -20,8 +20,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-6 col-12-xsmall">
-
+            <div class="col-4 col-12-xsmall">
                 @if ($post->tags->count() > 0)
                     <h4>Теги</h4>
                     <ul class="actions ">
@@ -35,7 +34,27 @@
                     </ul>
                 @endif
             </div>
+            <div class="col-4">
+                <h4>Нраица</h4>
+                @auth
+                    <form action="{{ route('likes.store', $post->id) }}"
+                        method="POST">
+                        @csrf
+                        <button type="submit" class="button">
+                            @if( auth()->user()->likedPosts->contains($post->id) ) 
+                                <i class="fas fa-heart"></i> Добавлен
+                             @else
+                                <i class="far fa-heart"></i> Не добавлен
+                            @endif
+                        </button>
+                        {{ $post->liked_users_count }}
+                    </form>
+                @else
+                   <i class="far fa-heart"></i> {{ $post->liked_users_count }}
+                @endauth
+            </div>
         </div>
+
 
         @if ($comments->count())
             <div class="comments_wrapper">

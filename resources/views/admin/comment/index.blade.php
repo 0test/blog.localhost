@@ -1,31 +1,30 @@
 @extends('admin.layouts.main')
-@section('title', 'Все категории')
+@section('title', 'Все комментарии')
 @section('content')
 
     <section>
 		<header class="main">
-			<h2>Работа с категориями</h2>
+			<h2>Комментарии</h2>
 		</header>
-
         <div class="table-wrapper">
             <table>
                 <thead>
                     <tr>
-                        <th>Название</th>
-                        <th class="center">Создана</th>
+                        <th>Текст</th>
+                        <th class="center">Создан</th>
                         <th class="center">Действия</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($comments as $comment)                  
                     <tr>
-                        <td>{{ $category->title}}</td>
-                        <td class="center"><span class="small">{{ date('H:i d.m.Y', strtotime($category->created_at)) }}</span></td>
+                        <td>{{ $comment->message}}</td>
+                        <td class="center"><span class="small">{{ date('H:i d.m.Y', strtotime($comment->created_at)) }}</span></td>
                         <td class="center">
                             <ul class="actions  small">
-                                <li>    <a href="{{ route('admin.category.show', $category->id)}}" class="button ">Открыть</a></li>
-                                <li><a href="{{ route('admin.category.edit', $category->id) }}" class="button ">Редактировать</a></li>
-                                <li> <form method="POST" action="{{ route('admin.category.delete', $category->id) }}">
+                                <li>    <a href="{{ route('admin.post.show', $comment->post->id)}}" class="button ">К посту</a></li>
+                                <li><a href="{{ route('admin.comments.edit', $comment->id) }}" class="button ">Редактировать</a></li>
+                                <li> <form method="POST" action="{{ route('admin.comments.delete', $comment->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button primary ">Удалить</button>
@@ -37,8 +36,8 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="">Итого {{ $categories->count()}}</td>
-                        <td colspan="2"></td>
+                        <td>Итого {{ $comments->count()}}</td>
+                        <td class="center" colspan="2"></td>
                     </tr>
                 </tfoot>
             </table>

@@ -13,6 +13,8 @@
 						<li class="@if (Request::url() == route('admin.post.index') ) active @endif"><a href="{{ route('admin.post.index') }}">Все посты</a></li>
 					</ul>
 				</li>
+				
+				<li class="@if (Request::url() == route('admin.comments.index') ) active @endif"><a href="{{ route('admin.comments.index') }}">Комментарии</a></li>	
 				<li>
 					<span class="opener @if(Request::is('admin/categories*')) active @endif">Категории</span>
 					<ul>
